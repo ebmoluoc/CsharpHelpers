@@ -8,9 +8,24 @@ namespace CsharpHelpers.Helpers
     {
 
         /// <summary>
-        /// Search for the specified argument prefix in the command-line arguments. Return the
-        /// value after the prefix, return an empty string if only the prefix was found or
-        /// return null if the prefix was not found.
+        /// Search for the specified argument prefix in the command-line arguments. Returns
+        /// the value after the prefix, returns an empty string if only the prefix was found
+        /// or returns null if the prefix was not found.
+        /// </summary>
+        public static string GetArgument(string prefix)
+        {
+            foreach (var arg in Environment.GetCommandLineArgs())
+                if (arg.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+                    return arg.Substring(prefix.Length);
+
+            return null;
+        }
+
+
+        /// <summary>
+        /// Search for the specified argument prefix in the supplied command-line arguments.
+        /// Returns the value after the prefix, returns an empty string if only the prefix
+        /// was found or returns null if the prefix was not found.
         /// </summary>
         public static string GetArgument(string prefix, string[] args)
         {

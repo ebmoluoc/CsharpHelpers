@@ -14,6 +14,24 @@ namespace CsharpHelpers.Interops
         [DllImport("shell32.dll", CharSet = CharSet.Unicode, PreserveSig = false)]
         internal static extern void SHGetKnownFolderPath([In] ref Guid rfid, [In] KNOWN_FOLDER_FLAG dwFlags, [In] IntPtr hToken, [Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszPath);
 
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+        internal static extern IntPtr CreateFile([In] string lpFileName, [In] uint dwDesiredAccess, [In] uint dwShareMode, [In] IntPtr lpSecurityAttributes, [In] uint dwCreationDisposition, [In] uint dwFlagsAndAttributes, [In] IntPtr hTemplateFile);
+
+        [DllImport("kernel32.dll")]
+        internal static extern bool CloseHandle([In] IntPtr hObject);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        internal static extern bool DeviceIoControl([In] IntPtr hDevice, [In] uint dwIoControlCode, [In] IntPtr lpInBuffer, [In] int nInBufferSize, [Out] IntPtr lpOutBuffer, [In] int nOutBufferSize, [Out] out int lpBytesReturned, [In, Out] IntPtr lpOverlapped);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        internal static extern bool DeviceIoControl([In] IntPtr hDevice, [In] uint dwIoControlCode, [In] ref STORAGE_PROPERTY_QUERY lpInBuffer, [In] int nInBufferSize, [Out] out STORAGE_DESCRIPTOR_HEADER lpOutBuffer, [In] int nOutBufferSize, [Out] out int lpBytesReturned, [In, Out] IntPtr lpOverlapped);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        internal static extern bool DeviceIoControl([In] IntPtr hDevice, [In] uint dwIoControlCode, [In] ref STORAGE_PROPERTY_QUERY lpInBuffer, [In] int nInBufferSize, [Out] IntPtr lpOutBuffer, [In] int nOutBufferSize, [Out] out int lpBytesReturned, [In, Out] IntPtr lpOverlapped);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        internal static extern bool DeviceIoControl([In] IntPtr hDevice, [In] uint dwIoControlCode, [In] IntPtr lpInBuffer, [In] int nInBufferSize, [Out] out STORAGE_DEVICE_NUMBER lpOutBuffer, [In] int nOutBufferSize, [Out] out int lpBytesReturned, [In, Out] IntPtr lpOverlapped);
+
         [DllImport("user32.dll")]
         internal static extern IntPtr GetSubMenu([In] IntPtr hMenu, [In] int nPos);
 

@@ -4,6 +4,8 @@ namespace CsharpHelpers.Interops
 {
     public static class NativeConstants
     {
+        public static readonly IntPtr INVALID_HANDLE_VALUE = new IntPtr(-1);
+
         public static readonly IntPtr HWND_BROADCAST = new IntPtr(0xffff);
         public static readonly IntPtr HWND_MESSAGE = new IntPtr(-3);
         public static readonly IntPtr HWND_DESKTOP = new IntPtr(0);
@@ -11,6 +13,8 @@ namespace CsharpHelpers.Interops
         public static readonly IntPtr HWND_BOTTOM = new IntPtr(1);
         public static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
         public static readonly IntPtr HWND_NOTOPMOST = new IntPtr(-2);
+
+        public const int ERROR_MORE_DATA = 234;
 
         public const int WM_NULL = 0x0000;
         public const int WM_CREATE = 0x0001;
@@ -298,6 +302,19 @@ namespace CsharpHelpers.Interops
         public const int HTCLOSE = 20;
         public const int HTHELP = 21;
 
+        public const int DBT_DEVICEQUERYREMOVE = 0x8001;
+        public const int DBT_DEVICEQUERYREMOVEFAILED = 0x8002;
+        public const int DBT_DEVICEREMOVEPENDING = 0x8003;
+        public const int DBT_DEVICEREMOVECOMPLETE = 0x8004;
+        public const int DBT_DEVICETYPESPECIFIC = 0x8005;
+        public const int DBT_CUSTOMEVENT = 0x8006;
+        public const int DBT_DEVNODES_CHANGED = 0x0007;
+        public const int DBT_QUERYCHANGECONFIG = 0x0017;
+        public const int DBT_CONFIGCHANGED = 0x0018;
+        public const int DBT_CONFIGCHANGECANCELED = 0x0019;
+        public const int DBT_DEVICEARRIVAL = 0x8000;
+        public const int DBT_USERDEFINED = 0xFFFF;
+
         public const int SW_HIDE = 0;
         public const int SW_SHOWNORMAL = 1;
         public const int SW_NORMAL = 1;
@@ -490,5 +507,147 @@ namespace CsharpHelpers.Interops
         public const uint SWP_NOREPOSITION = SWP_NOOWNERZORDER;
         public const uint SWP_DEFERERASE = 0x2000;
         public const uint SWP_ASYNCWINDOWPOS = 0x4000;
+
+        public const uint DELETE = 0x00010000;
+        public const uint READ_CONTROL = 0x00020000;
+        public const uint WRITE_DAC = 0x00040000;
+        public const uint WRITE_OWNER = 0x00080000;
+        public const uint SYNCHRONIZE = 0x00100000;
+        public const uint STANDARD_RIGHTS_REQUIRED = 0x000F0000;
+        public const uint STANDARD_RIGHTS_READ = READ_CONTROL;
+        public const uint STANDARD_RIGHTS_WRITE = READ_CONTROL;
+        public const uint STANDARD_RIGHTS_EXECUTE = READ_CONTROL;
+        public const uint STANDARD_RIGHTS_ALL = 0x001F0000;
+        public const uint SPECIFIC_RIGHTS_ALL = 0x0000FFFF;
+        public const uint ACCESS_SYSTEM_SECURITY = 0x01000000;
+        public const uint MAXIMUM_ALLOWED = 0x02000000;
+        public const uint GENERIC_READ = 0x80000000;
+        public const uint GENERIC_WRITE = 0x40000000;
+        public const uint GENERIC_EXECUTE = 0x20000000;
+        public const uint GENERIC_ALL = 0x10000000;
+
+        public const uint FILE_SHARE_READ = 0x00000001;
+        public const uint FILE_SHARE_WRITE = 0x00000002;
+        public const uint FILE_SHARE_DELETE = 0x00000004;
+        public const uint FILE_ATTRIBUTE_READONLY = 0x00000001;
+        public const uint FILE_ATTRIBUTE_HIDDEN = 0x00000002;
+        public const uint FILE_ATTRIBUTE_SYSTEM = 0x00000004;
+        public const uint FILE_ATTRIBUTE_DIRECTORY = 0x00000010;
+        public const uint FILE_ATTRIBUTE_ARCHIVE = 0x00000020;
+        public const uint FILE_ATTRIBUTE_DEVICE = 0x00000040;
+        public const uint FILE_ATTRIBUTE_NORMAL = 0x00000080;
+        public const uint FILE_ATTRIBUTE_TEMPORARY = 0x00000100;
+        public const uint FILE_ATTRIBUTE_SPARSE_FILE = 0x00000200;
+        public const uint FILE_ATTRIBUTE_REPARSE_POINT = 0x00000400;
+        public const uint FILE_ATTRIBUTE_COMPRESSED = 0x00000800;
+        public const uint FILE_ATTRIBUTE_OFFLINE = 0x00001000;
+        public const uint FILE_ATTRIBUTE_NOT_CONTENT_INDEXED = 0x00002000;
+        public const uint FILE_ATTRIBUTE_ENCRYPTED = 0x00004000;
+        public const uint FILE_ATTRIBUTE_INTEGRITY_STREAM = 0x00008000;
+        public const uint FILE_ATTRIBUTE_VIRTUAL = 0x00010000;
+        public const uint FILE_ATTRIBUTE_NO_SCRUB_DATA = 0x00020000;
+        public const uint FILE_ATTRIBUTE_EA = 0x00040000;
+        public const uint FILE_ATTRIBUTE_PINNED = 0x00080000;
+        public const uint FILE_ATTRIBUTE_UNPINNED = 0x00100000;
+        public const uint FILE_ATTRIBUTE_RECALL_ON_OPEN = 0x00040000;
+        public const uint FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS = 0x00400000;
+        public const uint TREE_CONNECT_ATTRIBUTE_PRIVACY = 0x00004000;
+        public const uint TREE_CONNECT_ATTRIBUTE_INTEGRITY = 0x00008000;
+        public const uint TREE_CONNECT_ATTRIBUTE_GLOBAL = 0x00000004;
+        public const uint TREE_CONNECT_ATTRIBUTE_PINNED = 0x00000002;
+        public const uint FILE_ATTRIBUTE_STRICTLY_SEQUENTIAL = 0x20000000;
+        public const uint FILE_NOTIFY_CHANGE_FILE_NAME = 0x00000001;
+        public const uint FILE_NOTIFY_CHANGE_DIR_NAME = 0x00000002;
+        public const uint FILE_NOTIFY_CHANGE_ATTRIBUTES = 0x00000004;
+        public const uint FILE_NOTIFY_CHANGE_SIZE = 0x00000008;
+        public const uint FILE_NOTIFY_CHANGE_LAST_WRITE = 0x00000010;
+        public const uint FILE_NOTIFY_CHANGE_LAST_ACCESS = 0x00000020;
+        public const uint FILE_NOTIFY_CHANGE_CREATION = 0x00000040;
+        public const uint FILE_NOTIFY_CHANGE_SECURITY = 0x00000100;
+        public const uint FILE_ACTION_ADDED = 0x00000001;
+        public const uint FILE_ACTION_REMOVED = 0x00000002;
+        public const uint FILE_ACTION_MODIFIED = 0x00000003;
+        public const uint FILE_ACTION_RENAMED_OLD_NAME = 0x00000004;
+        public const uint FILE_ACTION_RENAMED_NEW_NAME = 0x00000005;
+        public const uint MAILSLOT_NO_MESSAGE = 0xFFFFFFFF;
+        public const uint MAILSLOT_WAIT_FOREVER = 0xFFFFFFFF;
+        public const uint FILE_CASE_SENSITIVE_SEARCH = 0x00000001;
+        public const uint FILE_CASE_PRESERVED_NAMES = 0x00000002;
+        public const uint FILE_UNICODE_ON_DISK = 0x00000004;
+        public const uint FILE_PERSISTENT_ACLS = 0x00000008;
+        public const uint FILE_FILE_COMPRESSION = 0x00000010;
+        public const uint FILE_VOLUME_QUOTAS = 0x00000020;
+        public const uint FILE_SUPPORTS_SPARSE_FILES = 0x00000040;
+        public const uint FILE_SUPPORTS_REPARSE_POINTS = 0x00000080;
+        public const uint FILE_SUPPORTS_REMOTE_STORAGE = 0x00000100;
+        public const uint FILE_RETURNS_CLEANUP_RESULT_INFO = 0x00000200;
+        public const uint FILE_SUPPORTS_POSIX_UNLINK_RENAME = 0x00000400;
+        public const uint FILE_VOLUME_IS_COMPRESSED = 0x00008000;
+        public const uint FILE_SUPPORTS_OBJECT_IDS = 0x00010000;
+        public const uint FILE_SUPPORTS_ENCRYPTION = 0x00020000;
+        public const uint FILE_NAMED_STREAMS = 0x00040000;
+        public const uint FILE_READ_ONLY_VOLUME = 0x00080000;
+        public const uint FILE_SEQUENTIAL_WRITE_ONCE = 0x00100000;
+        public const uint FILE_SUPPORTS_TRANSACTIONS = 0x00200000;
+        public const uint FILE_SUPPORTS_HARD_LINKS = 0x00400000;
+        public const uint FILE_SUPPORTS_EXTENDED_ATTRIBUTES = 0x00800000;
+        public const uint FILE_SUPPORTS_OPEN_BY_FILE_ID = 0x01000000;
+        public const uint FILE_SUPPORTS_USN_JOURNAL = 0x02000000;
+        public const uint FILE_SUPPORTS_INTEGRITY_STREAMS = 0x04000000;
+        public const uint FILE_SUPPORTS_BLOCK_REFCOUNTING = 0x08000000;
+        public const uint FILE_SUPPORTS_SPARSE_VDL = 0x10000000;
+        public const uint FILE_DAX_VOLUME = 0x20000000;
+        public const uint FILE_SUPPORTS_GHOSTING = 0x40000000;
+
+        public const uint FILE_READ_DATA = 0x0001;
+        public const uint FILE_LIST_DIRECTORY = 0x0001;
+        public const uint FILE_WRITE_DATA = 0x0002;
+        public const uint FILE_ADD_FILE = 0x0002;
+        public const uint FILE_APPEND_DATA = 0x0004;
+        public const uint FILE_ADD_SUBDIRECTORY = 0x0004;
+        public const uint FILE_CREATE_PIPE_INSTANCE = 0x0004;
+        public const uint FILE_READ_EA = 0x0008;
+        public const uint FILE_WRITE_EA = 0x0010;
+        public const uint FILE_EXECUTE = 0x0020;
+        public const uint FILE_TRAVERSE = 0x0020;
+        public const uint FILE_DELETE_CHILD = 0x0040;
+        public const uint FILE_READ_ATTRIBUTES = 0x0080;
+        public const uint FILE_WRITE_ATTRIBUTES = 0x0100;
+        public const uint FILE_ALL_ACCESS = STANDARD_RIGHTS_REQUIRED | SYNCHRONIZE | 0x1FF;
+        public const uint FILE_GENERIC_READ = STANDARD_RIGHTS_READ | FILE_READ_DATA | FILE_READ_ATTRIBUTES | FILE_READ_EA | SYNCHRONIZE;
+        public const uint FILE_GENERIC_WRITE = STANDARD_RIGHTS_WRITE | FILE_WRITE_DATA | FILE_WRITE_ATTRIBUTES | FILE_WRITE_EA | FILE_APPEND_DATA | SYNCHRONIZE;
+        public const uint FILE_GENERIC_EXECUTE = STANDARD_RIGHTS_EXECUTE | FILE_READ_ATTRIBUTES | FILE_EXECUTE | SYNCHRONIZE;
+
+        public const uint FILE_FLAG_WRITE_THROUGH = 0x80000000;
+        public const uint FILE_FLAG_OVERLAPPED = 0x40000000;
+        public const uint FILE_FLAG_NO_BUFFERING = 0x20000000;
+        public const uint FILE_FLAG_RANDOM_ACCESS = 0x10000000;
+        public const uint FILE_FLAG_SEQUENTIAL_SCAN = 0x08000000;
+        public const uint FILE_FLAG_DELETE_ON_CLOSE = 0x04000000;
+        public const uint FILE_FLAG_BACKUP_SEMANTICS = 0x02000000;
+        public const uint FILE_FLAG_POSIX_SEMANTICS = 0x01000000;
+        public const uint FILE_FLAG_SESSION_AWARE = 0x00800000;
+        public const uint FILE_FLAG_OPEN_REPARSE_POINT = 0x00200000;
+        public const uint FILE_FLAG_OPEN_NO_RECALL = 0x00100000;
+        public const uint FILE_FLAG_FIRST_PIPE_INSTANCE = 0x00080000;
+
+        public const uint SECURITY_ANONYMOUS = (uint)SECURITY_IMPERSONATION_LEVEL.SecurityAnonymous << 16;
+        public const uint SECURITY_IDENTIFICATION = (uint)SECURITY_IMPERSONATION_LEVEL.SecurityIdentification << 16;
+        public const uint SECURITY_IMPERSONATION = (uint)SECURITY_IMPERSONATION_LEVEL.SecurityImpersonation << 16;
+        public const uint SECURITY_DELEGATION = (uint)SECURITY_IMPERSONATION_LEVEL.SecurityDelegation << 16;
+        public const uint SECURITY_CONTEXT_TRACKING = 0x00040000;
+        public const uint SECURITY_EFFECTIVE_ONLY = 0x00080000;
+        public const uint SECURITY_SQOS_PRESENT = 0x00100000;
+        public const uint SECURITY_VALID_SQOS_FLAGS = 0x001F0000;
+
+        public const uint CREATE_NEW = 1;
+        public const uint CREATE_ALWAYS = 2;
+        public const uint OPEN_EXISTING = 3;
+        public const uint OPEN_ALWAYS = 4;
+        public const uint TRUNCATE_EXISTING = 5;
+
+        public const uint IOCTL_STORAGE_GET_DEVICE_NUMBER = 0x002D1080;
+        public const uint IOCTL_STORAGE_QUERY_PROPERTY = 0x002D1400;
+        public const uint IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS = 0x00560000;
     }
 }

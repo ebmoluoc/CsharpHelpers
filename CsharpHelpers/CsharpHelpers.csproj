@@ -44,6 +44,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeviceServices\StorageDeviceDescriptor.cs" />
+    <Compile Include="DeviceServices\StorageDeviceNumber.cs" />
+    <Compile Include="DeviceServices\VolumeDiskExtents.cs" />
     <Compile Include="DialogServices\AboutDialog1.xaml.cs">
       <DependentUpon>AboutDialog1.xaml</DependentUpon>
     </Compile>
@@ -66,6 +69,8 @@
     <Compile Include="Interops\COMDLG_FILTERSPEC.cs" />
     <Compile Include="Helpers\ComHelper.cs" />
     <Compile Include="Interops\CSIDL.cs" />
+    <Compile Include="Interops\DEVICE_TYPE.cs" />
+    <Compile Include="Interops\DISK_EXTENT.cs" />
     <Compile Include="Interops\FDAP.cs" />
     <Compile Include="Interops\FDE_OVERWRITE_RESPONSE.cs" />
     <Compile Include="Interops\FDE_SHAREVIOLATION_RESPONSE.cs" />
@@ -101,6 +106,7 @@
     <Compile Include="Interops\KNOWNFOLDER_DEFINITION.cs" />
     <Compile Include="Interops\KNOWN_FOLDER_FLAG.cs" />
     <Compile Include="Interops\PROPERTYKEY.cs" />
+    <Compile Include="Interops\SECURITY_IMPERSONATION_LEVEL.cs" />
     <Compile Include="Interops\SFGAOF.cs" />
     <Compile Include="Interops\SHCONTF.cs" />
     <Compile Include="Interops\SHGDNF.cs" />
@@ -112,6 +118,14 @@
     <Compile Include="Helpers\EnvironmentHelper.cs" />
     <Compile Include="Helpers\MenuHelper.cs" />
     <Compile Include="Helpers\CollectionHelper.cs" />
+    <Compile Include="Interops\STORAGE_BUS_TYPE.cs" />
+    <Compile Include="Interops\STORAGE_DESCRIPTOR_HEADER.cs" />
+    <Compile Include="Interops\STORAGE_DEVICE_DESCRIPTOR.cs" />
+    <Compile Include="Interops\STORAGE_DEVICE_NUMBER.cs" />
+    <Compile Include="Interops\STORAGE_PROPERTY_ID.cs" />
+    <Compile Include="Interops\STORAGE_PROPERTY_QUERY.cs" />
+    <Compile Include="Interops\STORAGE_QUERY_TYPE.cs" />
+    <Compile Include="Interops\VOLUME_DISK_EXTENTS.cs" />
     <Compile Include="NotifyServices\INotifyDataErrorEdit.cs" />
     <Compile Include="NotifyServices\INotifyDataErrorEditInfo.cs" />
     <Compile Include="WindowServices\PlacementType.cs" />

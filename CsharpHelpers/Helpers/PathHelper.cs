@@ -60,7 +60,7 @@ namespace CsharpHelpers.Helpers
 
         /// <summary>
         /// Gets the paths defined in the PATH environment variable with the possibility to add few
-        /// more if needed through the optional extraPaths parameter. This function return an empty
+        /// more if needed through the optional extraPaths parameter. This function returns an empty
         /// array if the PATH environment variable couldn't be read and no extraPaths were specified.
         /// </summary>
         /// <exception cref="ArgumentNullException">extraPaths cannot be null.</exception>
