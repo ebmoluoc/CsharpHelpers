@@ -10,8 +10,15 @@ namespace CsharpHelpers.Helpers
     public static class PathHelper
     {
 
+        private static readonly char[] _InvalidFatVolumeLabelChars = { '*', '?', '/', '\\', '|', ',', ';', ':', '+', '=', '<', '>', '[', ']', '"', '.' };
         private static readonly string[] _PathReservedNames = { "CON", "PRN", "AUX", "NUL", "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9", "LPT1", "LPT2", "LPT3", "LPT4", "LPT5", "LPT6", "LPT7", "LPT8", "LPT9" };
         private static readonly int _PathReservedNamesLength = _PathReservedNames.Length;
+
+
+        public static char[] GetInvalidFatVolumeLabelChars()
+        {
+            return (char[])_InvalidFatVolumeLabelChars.Clone();
+        }
 
 
         public static string[] GetPathReservedNames()
