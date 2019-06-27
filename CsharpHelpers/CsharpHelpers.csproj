@@ -70,6 +70,8 @@
     <Compile Include="Helpers\ComHelper.cs" />
     <Compile Include="Interops\CSIDL.cs" />
     <Compile Include="Interops\DEVICE_TYPE.cs" />
+    <Compile Include="Interops\DEV_BROADCAST_HDR.cs" />
+    <Compile Include="Interops\DEV_BROADCAST_VOLUME.cs" />
     <Compile Include="Interops\DISK_EXTENT.cs" />
     <Compile Include="Interops\FDAP.cs" />
     <Compile Include="Interops\FDE_OVERWRITE_RESPONSE.cs" />
