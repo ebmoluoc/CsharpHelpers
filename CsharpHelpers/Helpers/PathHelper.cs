@@ -28,6 +28,31 @@ namespace CsharpHelpers.Helpers
 
 
         /// <summary>
+        /// Get the first drive available from the bit mask.
+        /// Bit position 0 is drive A:, bit position 1 is drive B:, bit position 2 is drive C:, and so on.
+        /// </summary>
+        public static string DriveFromMask(uint bitmask, bool trailingBackslash)
+        {
+            for (var i = 0; i < 26; ++i)
+            {
+                if ((bitmask & 1) != 0)
+                {
+                    var drive = $"{(char)(i + 'A')}:";
+
+                    if (trailingBackslash)
+                        drive += "\\";
+
+                    return drive;
+                }
+
+                bitmask >>= 1;
+            }
+
+            return null;
+        }
+
+
+        /// <summary>
         /// Checks whether FileInfo or DirectoryInfo has the specified FileSystemRights.
         /// </summary>
         /// <exception cref="ArgumentNullException">fileSystemInfo cannot be null.</exception>
@@ -54,7 +79,7 @@ namespace CsharpHelpers.Helpers
                 if (windowsIdentity.Groups.Contains(rule.IdentityReference) || windowsIdentity.User == rule.IdentityReference)
                 {
                     if ((rule.FileSystemRights & flags) != 0 && rule.AccessControlType == AccessControlType.Deny)
-                        break;
+                        return false;
 
                     if ((rule.FileSystemRights & flags) == flags && rule.AccessControlType == AccessControlType.Allow)
                         return true;
