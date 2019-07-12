@@ -1,5 +1,6 @@
 ﻿using CsharpHelpers.Helpers;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -18,6 +19,7 @@ namespace CsharpHelpers.WindowServices
 
         private readonly Window _window;
         private IntPtr _windowHandle;
+        private Placement _windowPlacement;
 
 
         /// <summary>
@@ -28,6 +30,7 @@ namespace CsharpHelpers.WindowServices
         {
             _window = window ?? throw new ArgumentNullException(nameof(window));
             _window.SourceInitialized += OnSourceInitialized;
+            _window.Closing += OnClosing;
             _window.Closed += OnClosed;
         }
 
@@ -91,8 +94,7 @@ namespace CsharpHelpers.WindowServices
 
             using (var stream = _placementPath.Open(FileMode.Create, FileAccess.Write))
             {
-                var placement = new Placement(_window);
-                new BinaryFormatter().Serialize(stream, placement);
+                new BinaryFormatter().Serialize(stream, _windowPlacement);
             }
         }
 
@@ -147,6 +149,13 @@ namespace CsharpHelpers.WindowServices
         }
 
 
+        private void OnClosing(object sender, CancelEventArgs e)
+        {
+            // RestoreBounds is not available on closed.
+            if (IsPlaceable)
+                _windowPlacement = new Placement(_window);
+        }
+
         private void OnClosed(object sender, EventArgs e)
         {
             if (IsPlaceable)
@@ -157,46 +166,47 @@ namespace CsharpHelpers.WindowServices
         [Serializable]
         private class Placement
         {
-            private readonly double Left;
-            private readonly double Top;
-            private readonly double Width;
-            private readonly double Height;
-            private readonly WindowState State;
+            private readonly double _left;
+            private readonly double _top;
+            private readonly double _width;
+            private readonly double _height;
+            private readonly WindowState _state;
 
             public Placement(Window window)
             {
-                Left = window.Left;
-                Top = window.Top;
-                Width = window.Width;
-                Height = window.Height;
-                State = window.WindowState;
+                var rect = window.RestoreBounds;
+                _left = rect.Left;
+                _top = rect.Top;
+                _width = rect.Width;
+                _height = rect.Height;
+                _state = window.WindowState;
             }
 
             public void GetSizeAndPosition(Window window)
             {
-                window.Left = Left;
-                window.Top = Top;
-                window.Width = Width;
-                window.Height = Height;
+                window.Left = _left;
+                window.Top = _top;
+                window.Width = _width;
+                window.Height = _height;
                 window.WindowState = GetState();
             }
 
             public void GetSizeOnly(Window window)
             {
-                window.Width = Width;
-                window.Height = Height;
+                window.Width = _width;
+                window.Height = _height;
             }
 
             public void GetPositionOnly(Window window)
             {
-                window.Left = Left;
-                window.Top = Top;
+                window.Left = _left;
+                window.Top = _top;
                 window.WindowState = GetState();
             }
 
             private WindowState GetState()
             {
-                return State == WindowState.Minimized ? WindowState.Normal : State;
+                return _state == WindowState.Minimized ? WindowState.Normal : _state;
             }
         }
 
