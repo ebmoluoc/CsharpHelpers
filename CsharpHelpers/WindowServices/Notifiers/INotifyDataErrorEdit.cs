@@ -1,4 +1,4 @@
-﻿namespace CsharpHelpers.NotifyServices
+﻿namespace CsharpHelpers.WindowServices
 {
     public interface INotifyDataErrorEdit
     {
